@@ -1,0 +1,17 @@
+{
+  "name": "multi-core-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "should": "^8.3.0",
+    "sinon": "^1.17.3"
+  }
+}
