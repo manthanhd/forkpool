@@ -1,6 +1,7 @@
 # Fork Pool
 Managing forks has never been easier!
 
+[![Build Status](https://travis-ci.org/manthanhd/forkpool.svg?branch=master)](https://travis-ci.org/manthanhd/forkpool)
 ## How to
 Install the dependency
 ```shell
