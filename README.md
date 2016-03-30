@@ -28,10 +28,16 @@ Initialise the pool. Here we create a pool of size `2`. This means that we'll on
 var pool = new ForkPool(2); 
 ```
 
-Create a `Forklet`. A forklet is an object that defines how the process must be forked. The two parameters it requires are the file name to be forked and an array of arguments that needs to be passed to the forked process.
+Create a `Forklet`. A forklet is an object that defines how the process must be forked. The two parameters it requires are the file name to be forked and an array of arguments that needs to be passed to the forked process. An optional third parameter specifying the timeout within which the process must run can be specified. If the process execution time is longer than the time specified here, it is killed with SIGKILL signal.
 
 ```javascript
 var videoProcessingForklet = new Forklet('./videoprocessor.js', ["/movie.mov"]);
+```
+
+Or with 3 second (3000ms) timeout
+
+```javascript
+var videoProcessingForklet = new Forklet('./videoprocessor.js', ["/movie.mov"], 3000);
 ```
 
 Our `videoProcessingForklet` is ready to be forked. The `pool.fork` function requires one argument with an additional optional argument:
