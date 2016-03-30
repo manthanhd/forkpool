@@ -4,27 +4,51 @@ function ForkPool(maxSize) {
     const childProcess = require('child_process');
 
     var size = 0;
-    var maxSize = maxSize;
     ForkPool.maxSize = maxSize;
 
-    ForkPool.fork = function(forklet, callback) {
+    ForkPool.fork = function (forklet, callback) {
         if (size >= maxSize) {
             queue.push({
                 forklet: forklet,
                 callback: callback
             });
-            if (callback) {
-                callback('scheduled');
+
+            if (forklet.onScheduledCallback) {
+                forklet.onScheduledCallback();
             }
+
+            if (callback) {
+                callback({name: 'scheduled'});
+            }
+
             return;
         }
 
         size++;
         var cproc = childProcess.fork(forklet.moduleName, forklet.envars);
-        cproc.on('exit', function() {
+        if (forklet.timeout && forklet.timeout > 0) {
+            (function (forklet, processObject, callback) {
+                setTimeout(function () {
+                    processObject.kill('SIGKILL');
+                    if (forklet.onTimeoutCallback) {
+                        forklet.onTimeoutCallback(processObject);
+                    }
+
+                    if (callback) {
+                        callback({name: 'timedout'}, processObject);
+                    }
+                }, forklet.timeout);
+            })(forklet, cproc, callback);
+        }
+
+        cproc.on('exit', function (code, signal) {
             size--;
+            if (forklet.onExitedCallback) {
+                forklet.onExitedCallback({code: code, signal: signal}, cproc);
+            }
+
             if (callback) {
-                callback('exited', cproc);
+                callback({name: 'exited', stateParams: {code: code, signal: signal}}, cproc);
             }
 
             if (queue.length > 0) {
@@ -34,11 +58,13 @@ function ForkPool(maxSize) {
             }
         });
 
-        if (callback) {
-            callback('started', cproc);
+        if (forklet.onStartedCallback) {
+            forklet.onStartedCallback(cproc);
         }
 
-        return;
+        if (callback) {
+            callback({name: 'started'}, cproc);
+        }
     };
 
     return ForkPool;

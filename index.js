@@ -1,4 +1,4 @@
 module.exports = {
-	ForkPool: require('./ForkPool'),
-	Forklet: require('./Forklet')
+    ForkPool: require('./ForkPool'),
+    Forklet: require('./Forklet')
 };
