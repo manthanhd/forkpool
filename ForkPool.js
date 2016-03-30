@@ -1,5 +1,3 @@
-"use strict";
-
 function ForkPool(maxSize) {
     const self = ForkPool;
     const queue = [];

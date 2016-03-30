@@ -1,13 +1,13 @@
 {
-  "name": "multi-core-node",
+  "name": "forkpool",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fork pool for managing forks in node.js",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Manthan Dave <manthanhd@live.com>",
+  "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
