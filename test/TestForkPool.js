@@ -1,5 +1,3 @@
-"use strict";
-
 var should = require('should');
 var expect = require('chai').expect;
 var sinon = require('sinon');
