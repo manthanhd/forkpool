@@ -20,8 +20,8 @@ function Forklet(moduleName, envars, timeout) {
         return self;
     };
 
-    this.onTimeout = function (callback) {
-        self.onTimeoutCallback = callback;
+    this.onTimedout = function (callback) {
+        self.onTimedoutCallback = callback;
         return self;
     };
 }

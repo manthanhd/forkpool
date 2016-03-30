@@ -30,8 +30,8 @@ function ForkPool(maxSize) {
             (function (forklet, processObject, callback) {
                 setTimeout(function () {
                     processObject.kill('SIGKILL');
-                    if (forklet.onTimeoutCallback) {
-                        forklet.onTimeoutCallback(processObject);
+                    if (forklet.onTimedoutCallback) {
+                        forklet.onTimedoutCallback(processObject);
                     }
 
                     if (callback) {
