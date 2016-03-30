@@ -2,11 +2,16 @@
   "name": "forkpool",
   "version": "1.0.0",
   "description": "Fork pool for managing forks in node.js",
+  "keywords": ["child_process", "fork", "pool", "pooling"],
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Manthan Dave <manthanhd@live.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manthanhd/forkpool.git"
+  },
+  "author": "Manthan Dave <manthanhd@live.com> (https://www.manthanhd.com)",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
