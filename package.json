@@ -1,7 +1,7 @@
 {
   "name": "forkpool",
-  "version": "1.0.1",
-  "description": "Fork pool for managing forks in node.js",
+  "version": "2.0.1",
+  "description": "Fork pool for managing forks in node.js.",
   "keywords": ["child_process", "fork", "pool", "pooling"],
   "main": "index.js",
   "scripts": {
